@@ -10,7 +10,7 @@ const Async = () => {
         setPosts(data);
       });
   }, []);
-
+  // 요청 전송에 성공하는지는 테스트하지 않는다.
   return (
     <div>
       <ul>

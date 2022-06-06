@@ -3,6 +3,13 @@ import Async from './Async';
 
 describe('Async component', () => {
   test('renders posts if request succeeds', async () => {
+    window.fetch = jest.fn();
+    window.fetch.mockResolvedValueOnce({
+      json: async () => [{ id: 'p1', title: 'First post' }],
+    });
+    //fetch 함수의 다양한 결과를 제어해서 다양한 시나리오를 시험해볼 수 있다.
+    // 이런경우 mock 쓰는게 나쁘지않다.
+
     render(<Async />);
     const listItemElements = await screen.findAllByRole('listitem');
     expect(listItemElements).not.toHaveLength(0);
